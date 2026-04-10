@@ -1,59 +1,96 @@
 # Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+## Requeriments
 
-## Development server
+### Atoms Components:
+Los atomos son componentes de presentación encargados de la interfaz de usuario.
 
-To start a local development server, run:
+| Componente | Variantes y Estados | Responsabilidad Tecnica |
+| :--- | :--- | :--- |
+| Button | Primary, Secondary, Outline, Loading | Gestion de eventos de click y estados visuales. |
+| Input Text | Active, ReadOnly, Disabled, Error | Implementacion de ControlValueAccessor para formularios. |
+| Input Select | Active, ReadOnly, Disabled | Manejo de opciones y navegacion por teclado via CDK. |
+| Alert | Success, Information, Error | Notificaciones accesibles con roles ARIA especificos. |
+| Table | Headers, Body, Empty State | Proyeccion de contenido dinamico y estados de carga. |
+| Paginator | Default, Active, Disabled | Emision de eventos de paginacion (indice y tamaño). |
+| Filter | Input, Chip, Clear | Captura de criterios de busqueda para la tabla. |
 
-```bash
-ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+#### Tests
+* UI y Estados: Validar que se aplican las clases CSS correctas segun la variante definida.
+* Accesibilidad: Verificar navegacion mediante Tab/Enter y etiquetas para lectores de pantalla.
+* Seguridad: Validar que los valores de entrada no ejecuten scripts (XSS) al ser renderizados.
+* Formularios: Comprobar la sincronizacion bidireccional entre el componente y el FormControl.
 
-## Code scaffolding
+### Molecules Components
+Las moleculas combinan varios atomos para crear unidades funcionales mas complejas.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+#### SmartTable
+Componente de alta complejidad que orquesta la visualizacion de datos.
+* **Composicion:** Filters + Table + Paginator + Alert.
+* **Logica:** Centraliza el estado de los filtros, el ordenamiento y la paginacion actual.
 
-```bash
-ng generate component component-name
-```
+#### Tests para Moleculas
+* **Integracion de Filtros:** Verificar que la tabla reacciona ante cambios en el componente de filtros.
+* **Flujo de Paginacion:** Validar que el cambio de pagina dispare las peticiones correctas al servicio.
+* **Estado Vacio:** Confirmar que se muestra el mensaje informativo correcto cuando no existen registros.
+* **Consistencia de Datos:** Asegurar que los datos mostrados cumplen con el esquema de validacion Zod.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+### Features:
+#### Categories:
+- All:
+    - Filtros.
+    - Tabla con todas las categorías.
+    - Paginación.
+- Edit:
+    - AlertsService.
+    - Sección informativa sobre la categoría (Details).
+    - Formulario
+        - Input text (Nombre).
+        - Input select (Select parent categories).
+        - Button (Primary) submit.
 
-## Building
+#### Tags:
+- All
+    - Filtros.
+    - Tabla con todas las tags.
+    - Paginación.
+- Edit
+    - AlertsService.
+    - Sección informativa sobre la tag (Details).
+    - Formulario
+        - Input text.
+        - Button (Primary) submit.
 
-To build the project run:
 
-```bash
-ng build
-```
+### Tests:
+- Filtros.
+- Tabla con datos.
+- Tabla sin datos.
+- Paginación.
+- Formulario con errores por campo y comprobar si enviamos o no y los datos sean identicos a los que pusimos.
+- Validación XSS en los campos del formulario.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Entendido. Vamos a limpiar el formato eliminando iconos y caracteres especiales, manteniendo una estructura profesional, minimalista y fácil de leer en cualquier editor de Markdown.
 
-```bash
-ng test
-```
+Aquí tienes la versión refinada para tu **README.md**:
 
-## Running end-to-end tests
+#### Tests para Atomos
+* **UI y Estados:** Validar que se aplican las clases CSS correctas segun la variante definida.
+* **Accesibilidad:** Verificar navegacion mediante Tab/Enter y etiquetas para lectores de pantalla.
+* **Seguridad:** Validar que los valores de entrada no ejecuten scripts (XSS) al ser renderizados.
+* **Formularios:** Comprobar la sincronizacion bidireccional entre el componente y el FormControl.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+### Molecules Components
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Estandares de Calidad y Seguridad
+* **Cumplimiento WCAG:** Relacion de contraste minima de 4.5:1 y soporte completo para tecnologias de asistencia.
+* **Sanitizacion de Datos:** Uso de mecanismos nativos de Angular para la prevencion de inyecciones de codigo.
+* **Rendimiento:** Uso de ChangeDetectionStrategy.OnPush para minimizar ciclos de deteccion de cambios innecesarios.
+* **Tipado Estricto:** Validacion en tiempo de ejecucion de respuestas de API mediante esquemas Zod.
