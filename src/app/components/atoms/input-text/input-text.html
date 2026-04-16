@@ -1,0 +1,13 @@
+<div class="input-container" [id]="id">
+  <input
+    #inputElement
+    type="text"
+    [value]="value"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    (input)="onInput($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    [attr.aria-describedby]="null"
+  />
+</div>
