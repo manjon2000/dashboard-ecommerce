@@ -3,6 +3,7 @@
  * esos paquetes no podremos generar los tests.
  */
 
+import '@testing-library/jest-dom';
 import { vi, expect } from 'vitest';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import 'zone.js';

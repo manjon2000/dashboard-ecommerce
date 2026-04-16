@@ -1,0 +1,9 @@
+<button 
+  mat-button 
+  appearance 
+  [type]="type()" 
+  [isDisabled]="isDisabled()"
+  (click)="onClick($event)"
+>
+  {{ label() }}
+</button>

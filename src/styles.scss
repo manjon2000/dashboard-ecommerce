@@ -15,8 +15,6 @@
 @import "bootstrap/scss/utilities/api";
 
 
-@include mat.core();
-
 html {
   height: 100%;
   @include mat.theme((
@@ -27,7 +25,14 @@ html {
     typography: Roboto,
     density: 0,
   ));
+  // @include mat.button-overrides((
+  //   filled-container-color: orange,
+  //   filled-label-text-color: black,
+  //   outlined-outline-color: var(--mat-sys-primary),
+  // ));
 }
+
+
 
 body {
   // Default the application to a light color theme. This can be changed to
