@@ -1,0 +1,21 @@
+<div class="input-container" [id]="id">
+  <select
+    #selectElement
+    [value]="value"
+    [disabled]="disabled"
+    (change)="onChangeEvent($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    [attr.aria-describedby]="null"
+  >
+    @if (placeholder) {
+      <option value="" disabled selected hidden>{{ placeholder }}</option>
+    }
+    
+    @for (option of options(); track option.value) {
+      <option [value]="option.value">
+        {{ option.label }}
+      </option>
+    }
+  </select>
+</div>
